@@ -13,7 +13,7 @@ function Search(props) {
           type='text'
           name='searchbar'
           value={searchValue}
-          placeholder='Search here!'
+          placeholder='Wow! A filter!'
           onChange={onChange}
         />
         <label for="searchbar">Filter</label>
