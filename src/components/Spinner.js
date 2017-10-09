@@ -4,10 +4,6 @@ import './Spinner.css'
 
 class Spinner extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let bars = [];
     const props = this.props;

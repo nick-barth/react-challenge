@@ -2,10 +2,15 @@ import React, { PropTypes } from 'react'
 
 import './SelectedList.css'
 
-function renderText({id, name}) {
+function renderText({tagline, name}) {
   return (
-    <li className="SelectedList__list-item">
-      {name}
+    <li className="SelectedList__list-item" key={name}>
+      <h1 className="SelectedList__item-title">
+        {name}
+      </h1>
+      <p className="SelectedList__item-tagline">
+        {tagline}
+      </p>
     </li>
   )
 }
@@ -15,7 +20,7 @@ function SelectedList({ searchValue, list }) {
     <ul className="SelectedList">
       {list
         .filter(item => {
-          return searchValue === '' || item.text.includes(searchValue)
+          return searchValue === '' || item.name.includes(searchValue.toLowerCase())
         })
         .map(renderText)}
     </ul>
@@ -25,8 +30,8 @@ function SelectedList({ searchValue, list }) {
 SelectedList.propTypes = {
    searchValue: PropTypes.string.isRequired,
    list: PropTypes.arrayOf(PropTypes.shape({
-     id: PropTypes.number.isRequired,
-     text: PropTypes.string.isRequired,
+     tagline: PropTypes.string.isRequired,
+     name: PropTypes.string.isRequired,
    })).isRequired,
 }
 

@@ -14,6 +14,7 @@ class App extends Component {
 
   constructor(props){
     super(props)
+
     this.state = {
       list: [],
       searchValue: ''
@@ -43,9 +44,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Spinner /> 
         <Search searchValue={searchValue} onChange={this.onChange} />
-        {champFetch.pending ? <Spinner /> : <SelectedList searchValue={searchValue} list={this.state.list} />}
+        {champFetch.pending ? <Spinner /> : <SelectedList searchValue={searchValue} list={list} />}
       </div>
     );
   }

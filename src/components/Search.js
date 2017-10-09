@@ -6,14 +6,19 @@ function Search(props) {
   const { searchValue, onChange } = props;
 
   return (
-      <input
-        className="Search"
-        type='text'
-        name='searchbar'
-        value={searchValue}
-        placeholder='Search here!'
-        onChange={onChange}
-      />
+    <div className="Search__container">
+      <div className="Search__field">
+        <input
+          className="Search"
+          type='text'
+          name='searchbar'
+          value={searchValue}
+          placeholder='Search here!'
+          onChange={onChange}
+        />
+        <label for="searchbar">Filter</label>
+      </div>
+    </div>
   )
 }
 
