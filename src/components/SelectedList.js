@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react'
 
 import './SelectedList.css'
 
-function renderText({id, text}) {
+function renderText({id, name}) {
   return (
     <li className="SelectedList__list-item">
-      {text}
+      {name}
     </li>
   )
 }

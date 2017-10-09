@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-refetch'
 
 import {
   Search,
-  SelectedList
+  SelectedList,
+  Spinner
 }
 from './components'
 
@@ -13,9 +15,21 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      list: [],
       searchValue: ''
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    const { champFetch } = nextProps; 
+
+    if (champFetch.fulfilled) {
+      this.setState({
+        list: champFetch.value
+      });
+    }
+  }
+  
 
   /* auto binding */
   onChange = (e) => {
@@ -23,25 +37,20 @@ class App extends Component {
     this.setState({ searchValue })
   }
 
-  get list(){
-    return [
-      {id: 0, text: 'react'},
-      {id: 1, text: 'css'},
-      {id: 2, text: 'html'},
-      {id: 3, text: 'fetch'},
-    ]
-  }
-
   render() {
-    const { searchValue } = this.state
+    const { champFetch } = this.props;
+    const { searchValue, list } = this.state
 
     return (
       <div className="App">
+        <Spinner /> 
         <Search searchValue={searchValue} onChange={this.onChange} />
-        <SelectedList searchValue={searchValue} list={this.list} />
+        {champFetch.pending ? <Spinner /> : <SelectedList searchValue={searchValue} list={this.state.list} />}
       </div>
     );
   }
 }
 
-export default App;
+export default connect(props => ({
+  champFetch: 'http://quakechampselect.com/api/champs'
+}))(App)
