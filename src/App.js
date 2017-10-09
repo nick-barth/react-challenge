@@ -17,7 +17,7 @@ class App extends Component {
     }
   }
 
-  /* auto biding */
+  /* auto binding */
   onChange = (e) => {
     const searchValue = e.target.value
     this.setState({ searchValue })

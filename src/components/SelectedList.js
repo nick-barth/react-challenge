@@ -3,18 +3,20 @@ import React, { PropTypes } from 'react'
 import './SelectedList.css'
 
 function renderText({id, text}) {
-  return null;
-}
-
-function filterText(searchValue) {
-    return ({text}) => true
+  return (
+    <li className="SelectedList__list-item">
+      {text}
+    </li>
+  )
 }
 
 function SelectedList({ searchValue, list }) {
   return (
-    <ul>
+    <ul className="SelectedList">
       {list
-        .filter(filterText(searchValue))
+        .filter(item => {
+          return searchValue === '' || item.text.includes(searchValue)
+        })
         .map(renderText)}
     </ul>
   )
